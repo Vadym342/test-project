@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './modules/app/app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { DefaultExceptionFilter } from './filters/exception.filter';
 
 const start = async () => {
   try {
@@ -19,6 +20,7 @@ const start = async () => {
     SwaggerModule.setup('/', app, document);
 
     app.enableCors();
+    app.useGlobalFilters(new DefaultExceptionFilter());
     app.useGlobalPipes(
       new ValidationPipe({
         enableDebugMessages: true,
