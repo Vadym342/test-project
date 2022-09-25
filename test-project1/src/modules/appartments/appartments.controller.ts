@@ -22,7 +22,7 @@ export class AppartmentsController {
 
   @Get(':id')
   getAppartmentById(@Param('id') id: string) {
-    return this.appartmentsService.getAppartmentById(Number(id));
+    return this.appartmentsService.getAppartmentById(id);
   }
 
   @Post()
@@ -35,11 +35,11 @@ export class AppartmentsController {
     @Param('id') id: string,
     @Body() todo: UpdateAppartmentDto,
   ) {
-    return this.appartmentsService.updateAppartment(Number(id), todo);
+    return this.appartmentsService.updateAppartment(id, todo);
   }
 
   @Delete(':id')
   async deleteAppartment(@Param('id') id: string) {
-    this.appartmentsService.deleteAppartment(Number(id));
+    this.appartmentsService.deleteAppartment(id);
   }
 }

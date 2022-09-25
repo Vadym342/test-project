@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Resident } from 'src/models/residents/entities/resident.entity';
-import { Unit } from 'src/models/units/entities/unit.entity';
+import { Resident } from 'src/modules/residents/entities/resident.entity';
+import { Unit } from 'src/modules/units/entities/unit.entity';
 import {
   Column,
   Entity,
@@ -11,8 +11,8 @@ import {
 
 @Entity()
 export class Appartment {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @ApiProperty()
   @Column()

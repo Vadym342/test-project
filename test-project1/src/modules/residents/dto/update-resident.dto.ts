@@ -1,5 +1,5 @@
 export class UpdateResidentDto {
-  id: number;
+  id: string;
   name: string;
 }
 

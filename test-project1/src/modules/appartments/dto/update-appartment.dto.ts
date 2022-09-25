@@ -1,5 +1,5 @@
 export class UpdateAppartmentDto {
-  id: number;
+  id: string;
   name: string;
 }
 

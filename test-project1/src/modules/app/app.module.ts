@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UnitsModule } from './models/units/units.module';
-import { ResidentsModule } from './models/residents/residents.module';
-import { AppartmentsModule } from './models/appartments/appartments.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Unit } from './models/units/entities/unit.entity';
-import { Appartment } from './models/appartments/entity/appartment.entity';
-import { Resident } from './models/residents/entities/resident.entity';
+import { AppartmentsModule } from '../appartments/appartments.module';
+import { Appartment } from '../appartments/entity/appartment.entity';
+import { Resident } from '../residents/entities/resident.entity';
+import { ResidentsModule } from '../residents/residents.module';
+import { Unit } from '../units/entities/unit.entity';
+import { UnitsModule } from '../units/units.module';
 
 @Module({
   imports: [

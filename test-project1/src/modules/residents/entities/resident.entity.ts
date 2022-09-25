@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Appartment } from 'src/models/appartments/entity/appartment.entity';
+import { Appartment } from 'src/modules/appartments/entity/appartment.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Resident {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @ApiProperty()
   @Column()

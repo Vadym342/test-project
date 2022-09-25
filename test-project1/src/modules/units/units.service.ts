@@ -15,7 +15,7 @@ export class UnitsService {
     return this.unitRepository.find();
   }
 
-  async getUnitById(id: number) {
+  async getUnitById(id: string) {
     const unit = await this.unitRepository.findOne({ where: { id: id } });
     if (unit) {
       return unit;
@@ -30,7 +30,7 @@ export class UnitsService {
     return newUnit;
   }
 
-  async updateUnit(id: number, post: UpdateUnitDto) {
+  async updateUnit(id: string, post: UpdateUnitDto) {
     await this.unitRepository.update(id, post);
     const updatedUnit = await this.unitRepository.findOne({
       where: { id: id },
@@ -42,7 +42,7 @@ export class UnitsService {
     throw new HttpException('Unit not found', HttpStatus.NOT_FOUND);
   }
 
-  async deleteUnit(id: number) {
+  async deleteUnit(id: string) {
     const deletedUnit = await this.unitRepository.delete(id);
     if (!deletedUnit.affected) {
       throw new HttpException('Unit not found', HttpStatus.NOT_FOUND);

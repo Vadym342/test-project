@@ -16,7 +16,7 @@ export class AppartmentsService {
     return this.appartmentRepository.find();
   }
 
-  async getAppartmentById(id: number) {
+  async getAppartmentById(id: string) {
     const appartment = await this.appartmentRepository.findOne({
       where: { id: id },
     });
@@ -33,7 +33,7 @@ export class AppartmentsService {
     return newAppartment;
   }
 
-  async updateAppartment(id: number, post: UpdateAppartmentDto) {
+  async updateAppartment(id: string, post: UpdateAppartmentDto) {
     await this.appartmentRepository.update(id, post);
     const appartment = await this.appartmentRepository.findOne({
       where: { id: id },
@@ -45,7 +45,7 @@ export class AppartmentsService {
     throw new HttpException('Appartment not found', HttpStatus.NOT_FOUND);
   }
 
-  async deleteAppartment(id: number) {
+  async deleteAppartment(id: string) {
     const deletedAppartment = await this.appartmentRepository.delete(id);
     if (!deletedAppartment.affected) {
       throw new HttpException('Appartment not found', HttpStatus.NOT_FOUND);

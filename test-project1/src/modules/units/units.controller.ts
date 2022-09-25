@@ -22,7 +22,7 @@ export class UnitsController {
 
   @Get(':id')
   getUnitById(@Param('id') id: string) {
-    return this.unitsService.getUnitById(Number(id));
+    return this.unitsService.getUnitById(id);
   }
 
   @Post()
@@ -32,11 +32,11 @@ export class UnitsController {
 
   @Put(':id')
   async updatePost(@Param('id') id: string, @Body() todo: UpdateUnitDto) {
-    return this.unitsService.updateUnit(Number(id), todo);
+    return this.unitsService.updateUnit(id, todo);
   }
 
   @Delete(':id')
   async deleteUnit(@Param('id') id: string) {
-    this.unitsService.deleteUnit(Number(id));
+    this.unitsService.deleteUnit(id);
   }
 }

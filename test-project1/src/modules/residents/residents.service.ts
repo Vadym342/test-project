@@ -16,7 +16,7 @@ export class ResidentsService {
     return this.residentRepository.find();
   }
 
-  async getResidentById(id: number) {
+  async getResidentById(id: string) {
     const resident = await this.residentRepository.findOne({
       where: { id: id },
     });
@@ -33,7 +33,7 @@ export class ResidentsService {
     return newResident;
   }
 
-  async updateResident(id: number, post: UpdateResidentDto) {
+  async updateResident(id: string, post: UpdateResidentDto) {
     await this.residentRepository.update(id, post);
     const resident = await this.residentRepository.findOne({
       where: { id: id },
@@ -45,7 +45,7 @@ export class ResidentsService {
     throw new HttpException('Resident not found', HttpStatus.NOT_FOUND);
   }
 
-  async deleteResident(id: number) {
+  async deleteResident(id: string) {
     const deletedResident = await this.residentRepository.delete(id);
     if (!deletedResident.affected) {
       throw new HttpException('Resident not found', HttpStatus.NOT_FOUND);

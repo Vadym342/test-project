@@ -22,7 +22,7 @@ export class ResidentsController {
 
   @Get(':id')
   getResidentById(@Param('id') id: string) {
-    return this.residentsService.getResidentById(Number(id));
+    return this.residentsService.getResidentById(id);
   }
 
   @Post()
@@ -35,11 +35,11 @@ export class ResidentsController {
     @Param('id') id: string,
     @Body() todo: UpdateResidentDto,
   ) {
-    return this.residentsService.updateResident(Number(id), todo);
+    return this.residentsService.updateResident(id, todo);
   }
 
   @Delete(':id')
   async deleteResident(@Param('id') id: string) {
-    this.residentsService.deleteResident(Number(id));
+    this.residentsService.deleteResident(id);
   }
 }
