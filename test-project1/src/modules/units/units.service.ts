@@ -1,22 +1,20 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Unit } from './entities/unit.entity';
 import { CreateUnitDto } from './dto/create-unit.dto';
 import { UpdateUnitDto } from './dto/update-unit.dto';
+import { Unit } from './entities/unit.entity';
 
 @Injectable()
 export class UnitsService {
-  constructor(
-    @InjectRepository(Unit) private unitRepository: Repository<Unit>,
-  ) {}
+  constructor(@InjectRepository(Unit) private unitRepository: Repository<Unit>) {}
 
   getAllUnits() {
     return this.unitRepository.find();
   }
 
   async getUnitById(id: string) {
-    const unit = await this.unitRepository.findOne({ where: { id: id } });
+    const unit = await this.unitRepository.findOne({ where: { unitId: id } });
     if (unit) {
       return unit;
     }
@@ -30,10 +28,10 @@ export class UnitsService {
     return newUnit;
   }
 
-  async updateUnit(id: string, post: UpdateUnitDto) {
-    await this.unitRepository.update(id, post);
+  async updateUnit(id: string, unit: UpdateUnitDto) {
+    await this.unitRepository.update(id, unit);
     const updatedUnit = await this.unitRepository.findOne({
-      where: { id: id },
+      where: { unitId: id },
     });
     if (updatedUnit) {
       return updatedUnit;

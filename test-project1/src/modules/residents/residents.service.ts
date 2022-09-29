@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import CreateResidentDto from './dto/create-resident.dto';
-import UpdateResidentDto from './dto/update-resident.dto';
+import { CreateResidentDto } from './dto/create-resident.dto';
+import { UpdateResidentDto } from './dto/update-resident.dto';
 import { Resident } from './entities/resident.entity';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class ResidentsService {
 
   async getResidentById(id: string) {
     const resident = await this.residentRepository.findOne({
-      where: { id: id },
+      where: { residentId: id },
     });
     if (resident) {
       return resident;
@@ -33,10 +33,10 @@ export class ResidentsService {
     return newResident;
   }
 
-  async updateResident(id: string, post: UpdateResidentDto) {
-    await this.residentRepository.update(id, post);
+  async updateResident(id: string, rsdt: UpdateResidentDto) {
+    await this.residentRepository.update(id, rsdt);
     const resident = await this.residentRepository.findOne({
-      where: { id: id },
+      where: { residentId: id },
     });
     if (resident) {
       return resident;

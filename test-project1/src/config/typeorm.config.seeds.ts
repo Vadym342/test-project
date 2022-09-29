@@ -4,7 +4,7 @@ import * as path from 'path';
 
 dotenv.config();
 
-export const typeOrmConfig: DataSourceOptions = {
+export const seedConfig: DataSourceOptions = {
   type: 'postgres',
   host: process.env.POSTGRES_HOST,
   port: +process.env.POSTGRES_PORT,
@@ -12,8 +12,9 @@ export const typeOrmConfig: DataSourceOptions = {
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   entities: [path.join(__dirname, '..', '**/*.entity{.ts,.js}')],
-  migrations: [path.join(__dirname, '..', 'database/migrations/*{.ts,.js}')],
-  synchronize: false,
+  migrations: [path.join(__dirname, '..', 'database/seeds/*{.ts,.js}')],
+  migrationsTableName: 'seeds',
   logging: true,
 };
-export const AppDataSource: DataSource = new DataSource(typeOrmConfig);
+
+export const seedingDataSource: DataSource = new DataSource(seedConfig);

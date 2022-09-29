@@ -1,6 +1,4 @@
-export class UpdateResidentDto {
-  id: string;
-  name: string;
-}
+import { PartialType } from '@nestjs/swagger';
+import { CreateResidentDto } from './create-resident.dto';
 
-export default UpdateResidentDto;
+export class UpdateResidentDto extends PartialType(CreateResidentDto) {}

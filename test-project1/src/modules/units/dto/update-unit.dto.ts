@@ -1,6 +1,4 @@
-export class UpdateUnitDto {
-  id: string;
-  name: string;
-}
+import { PartialType } from '@nestjs/swagger';
+import { CreateUnitDto } from './create-unit.dto';
 
-export default UpdateUnitDto;
+export class UpdateUnitDto extends PartialType(CreateUnitDto) {}

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmAsyncConfig } from 'src/config/typeorm.config';
+import { typeOrmConfig } from 'src/config/typeorm.config-migrations';
 import { AppartmentsModule } from '../appartments/appartments.module';
 import { ResidentsModule } from '../residents/residents.module';
 import { UnitsModule } from '../units/units.module';
@@ -11,7 +11,7 @@ import { UnitsModule } from '../units/units.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
+    TypeOrmModule.forRoot(typeOrmConfig),
     UnitsModule,
     ResidentsModule,
     AppartmentsModule,

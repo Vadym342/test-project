@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Appartment } from './entity/appartment.entity';
+import { Appartment } from './entities/appartment.entity';
 import { CreateAppartmentDto } from './dto/create-appartment.dto';
 import { UpdateAppartmentDto } from './dto/update-appartment.dto';
 
@@ -18,7 +18,7 @@ export class AppartmentsService {
 
   async getAppartmentById(id: string) {
     const appartment = await this.appartmentRepository.findOne({
-      where: { id: id },
+      where: { appartmentId: id },
     });
     if (appartment) {
       return appartment;
@@ -36,7 +36,7 @@ export class AppartmentsService {
   async updateAppartment(id: string, post: UpdateAppartmentDto) {
     await this.appartmentRepository.update(id, post);
     const appartment = await this.appartmentRepository.findOne({
-      where: { id: id },
+      where: { appartmentId: id },
     });
     if (appartment) {
       return appartment;

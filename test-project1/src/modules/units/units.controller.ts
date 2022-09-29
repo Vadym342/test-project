@@ -1,16 +1,10 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { UpdateUnitDto } from './dto/update-unit.dto';
 import { CreateUnitDto } from './dto/create-unit.dto';
 import { UnitsService } from './units.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Units')
 @Controller('units')
 export class UnitsController {
   constructor(private readonly unitsService: UnitsService) {}
@@ -26,13 +20,13 @@ export class UnitsController {
   }
 
   @Post()
-  async createUnit(@Body() todo: CreateUnitDto) {
-    return this.unitsService.createUnit(todo);
+  async createUnit(@Body() unit: CreateUnitDto) {
+    return this.unitsService.createUnit(unit);
   }
 
   @Put(':id')
-  async updatePost(@Param('id') id: string, @Body() todo: UpdateUnitDto) {
-    return this.unitsService.updateUnit(id, todo);
+  async updatePost(@Param('id') id: string, @Body() unit: UpdateUnitDto) {
+    return this.unitsService.updateUnit(id, unit);
   }
 
   @Delete(':id')
