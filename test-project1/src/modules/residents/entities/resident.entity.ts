@@ -1,16 +1,20 @@
+import { Appartment } from './../../appartments/entities/appartment.entity';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { Appartment } from 'src/modules/appartments/entity/appartment.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'residents' })
 export class Resident {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn('uuid')
+  residentId: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ name: 'name', type: 'varchar' })
   name: string;
 
-  @ManyToOne(() => Appartment, (appartment) => appartment.resident)
+  @ManyToOne(() => Appartment, (appartment) => appartment.residents)
+  @JoinColumn({
+    name: 'appartment',
+    referencedColumnName: 'appartmentId',
+  })
   appartment: Appartment;
 }

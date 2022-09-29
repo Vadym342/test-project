@@ -11,7 +11,7 @@ export class DefaultExceptionFilter implements ExceptionFilter<HttpException> {
 
     const responseObject = this.formatExceptionResponse(exception);
 
-    this.logger.error(JSON.stringify({...responseObject }));
+    this.logger.error(JSON.stringify({ ...responseObject }));
 
     response.json(responseObject);
   }

@@ -1,16 +1,9 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
-import CreateResidentDto from './dto/create-resident.dto';
-import UpdateResidentDto from './dto/update-resident.dto';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ResidentsService } from './residents.service';
-
+import { ApiTags } from '@nestjs/swagger';
+import { CreateResidentDto } from './dto/create-resident.dto';
+import { UpdateResidentDto } from './dto/update-resident.dto';
+@ApiTags('Residents')
 @Controller('residents')
 export class ResidentsController {
   constructor(private readonly residentsService: ResidentsService) {}
@@ -26,16 +19,13 @@ export class ResidentsController {
   }
 
   @Post()
-  async createResident(@Body() todo: CreateResidentDto) {
-    return this.residentsService.createResident(todo);
+  async createResident(@Body() resident: CreateResidentDto) {
+    return this.residentsService.createResident(resident);
   }
 
   @Put(':id')
-  async updateResident(
-    @Param('id') id: string,
-    @Body() todo: UpdateResidentDto,
-  ) {
-    return this.residentsService.updateResident(id, todo);
+  async updateResident(@Param('id') id: string, @Body() resident: UpdateResidentDto) {
+    return this.residentsService.updateResident(id, resident);
   }
 
   @Delete(':id')

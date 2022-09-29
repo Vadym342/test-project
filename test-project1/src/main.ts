@@ -11,11 +11,7 @@ const start = async () => {
     const configService = app.get(ConfigService);
     const PORT = configService.get<string>('PORT');
 
-    const config = new DocumentBuilder()
-      .setTitle('CRUD')
-      .setDescription('API description')
-      .setVersion('1.0')
-      .build();
+    const config = new DocumentBuilder().setTitle('CRUD').setDescription('API description').setVersion('1.0').build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('/', app, document);
 
@@ -30,9 +26,7 @@ const start = async () => {
         transform: true,
       }),
     );
-    await app.listen(PORT, () =>
-      console.log(`🚀 Server started on PORT ${PORT}`),
-    );
+    await app.listen(PORT, () => console.log(`🚀 Server started on PORT ${PORT}`));
   } catch (e) {
     console.log(e);
   }
